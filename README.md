@@ -5,11 +5,6 @@ Once you have cloned down the project, run
 `npm install`
 
 to install all the relevant packages.
-Most of what is needed is there already, but you will additionally need to run
-`npm install express`
-
-and
-`npm install supertest`
 
 You will need to create two files in BE-NC-GAMES named
 `.env.test`
