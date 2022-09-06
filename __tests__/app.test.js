@@ -5,9 +5,6 @@ const app = require(`../app`);
 const request = require("supertest");
 
 beforeEach(() => seed(testData));
-afterAll(() => {
-  if (db.end) db.end();
-});
 
 describe(`GET /api/categories`, () => {
   test(`200: responds with an array of categories`, () => {
@@ -17,7 +14,7 @@ describe(`GET /api/categories`, () => {
       .then(({ body }) => {
         const categories = body.categories;
         expect(categories.length > 0).toBe(true);
-        expect(typeof categories).toBe("object");
+        expect(Array.isArray(categories)).toBe(true);
         categories.forEach((category) => {
           expect(typeof category.slug).toBe("string");
           expect(typeof category.description).toBe("string");
