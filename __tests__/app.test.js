@@ -9,7 +9,7 @@ afterAll(() => {
   if (db.end) db.end();
 });
 
-describe.only(`GET /api/categories`, () => {
+describe(`GET /api/categories`, () => {
   test(`200: responds with an array of categories`, () => {
     return request(app)
       .get(`/api/categories`)
@@ -22,6 +22,17 @@ describe.only(`GET /api/categories`, () => {
           expect(typeof category.slug).toBe("string");
           expect(typeof category.description).toBe("string");
         });
+      });
+  });
+});
+describe(`GET incorrect path`, () => {
+  test(`404 - page not found`, () => {
+    return request(app)
+      .get(`/api/cats`)
+      .expect(404)
+      .then(({ body }) => {
+        const message = body.message;
+        expect(message).toBe("page not found");
       });
   });
 });
