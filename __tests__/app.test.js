@@ -6,7 +6,7 @@ const request = require("supertest");
 
 beforeEach(() => seed(testData));
 afterAll(() => {
-  if (db.end) db.end();
+  db.end();
 });
 
 describe(`GET /api/categories`, () => {
