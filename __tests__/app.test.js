@@ -17,7 +17,6 @@ describe(`GET /api/categories`, () => {
       .then(({ body }) => {
         const categories = body.categories;
         expect(categories.length > 0).toBe(true);
-        expect(Array.isArray(categories)).toBe(true);
         categories.forEach((category) => {
           expect(typeof category.slug).toBe("string");
           expect(typeof category.description).toBe("string");
@@ -74,6 +73,23 @@ describe(`GET /api/reviews/:review_id`, () => {
       .then(({ body }) => {
         const message = body.message;
         expect(message).toBe("not found");
+      });
+  });
+});
+
+describe(`GET /api/users`, () => {
+  test(`200: responds with an array of users`, () => {
+    return request(app)
+      .get(`/api/users`)
+      .expect(200)
+      .then(({ body }) => {
+        const users = body.users;
+        expect(users.length > 0).toBe(true);
+        users.forEach((user) => {
+          expect(typeof user.username).toBe("string");
+          expect(typeof user.name).toBe("string");
+          expect(typeof user.avatar_url).toBe("string");
+        });
       });
   });
 });
