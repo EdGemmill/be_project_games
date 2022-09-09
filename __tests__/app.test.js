@@ -17,7 +17,6 @@ describe(`GET /api/categories`, () => {
       .then(({ body }) => {
         const categories = body.categories;
         expect(categories.length > 0).toBe(true);
-        expect(Array.isArray(categories)).toBe(true);
         categories.forEach((category) => {
           expect(typeof category.slug).toBe("string");
           expect(typeof category.description).toBe("string");
@@ -86,7 +85,6 @@ describe(`GET /api/users`, () => {
       .then(({ body }) => {
         const users = body.users;
         expect(users.length > 0).toBe(true);
-        expect(Array.isArray(users)).toBe(true);
         users.forEach((user) => {
           expect(typeof user.username).toBe("string");
           expect(typeof user.name).toBe("string");
