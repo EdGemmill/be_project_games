@@ -1,6 +1,7 @@
 const {
   selectCategories,
   selectReviewById,
+  selectUsers,
 } = require(`../models/games.models`);
 
 exports.getCategories = (req, res) => {
@@ -17,4 +18,10 @@ exports.getReviewById = (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+};
+
+exports.getUsers = (req, res) => {
+  selectUsers().then((data) => {
+    res.status(200).send({ users: data });
+  });
 };

@@ -3,11 +3,14 @@ const app = express();
 const {
   getCategories,
   getReviewById,
+  getUsers,
 } = require("./controllers/games.controllers");
 
 app.get(`/api/categories`, getCategories);
 
 app.get(`/api/reviews/:review_id`, getReviewById);
+
+app.get(`/api/users`, getUsers);
 
 app.all("*", (req, res) => {
   res.status(404).send({ message: "page not found" });

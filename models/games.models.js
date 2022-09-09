@@ -16,3 +16,9 @@ exports.selectReviewById = (id) => {
       }
     });
 };
+
+exports.selectUsers = () => {
+  return db.query(`SELECT * FROM users`).then((data) => {
+    return data.rows;
+  });
+};
